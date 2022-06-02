@@ -1,0 +1,9 @@
+deploymentName: hello-app
+podName: hello-app
+serviceName: hello-app
+namespace: hello-ns
+replicaCount: 3
+image: asia-southeast1-docker.pkg.dev/duy-k8s/cicd-registry/cicd-app:v1
+containerPort: 8080
+port: 80
+targetPort: 8080

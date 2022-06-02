@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deploymentName }}
+  namespace: {{ .Values.namespace }}
+  labels: {{ include "common.labels" . | nindent 4}}
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels: {{ include "common.labels" . | nindent 6}}
+  template:
+    metadata:
+      labels: {{ include "common.labels" . | nindent 8}}
+    spec:
+      containers:
+        - name: {{ .Values.podName }}
+          image: {{ .Values.image }}
+          ports:
+            - containerPort: {{ .Values.containerPort }}
